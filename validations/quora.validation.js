@@ -10,7 +10,7 @@ const verifyQuoraBody = (req, res, next) => {
             "message": "Keyword should be of type string"
         })
     }
-    else if (keyword.toLowerCase() !== 'bca' && keyword.toLowerCase() !== 'mca') {
+    else if (keyword.toLowerCase() !== 'bca' && keyword.toLowerCase() !== 'mca' && keyword.toLowerCase() !== 'bachelor in computer application' && keyword.toLowerCase() !== 'masters in computer application') {
         res.status(400).json({
             "message": "Keyword should be only bca or mca"
         })

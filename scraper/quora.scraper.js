@@ -1,7 +1,5 @@
 const chrome = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
 
-const {executablePath} = require('puppeteer')
 
 function makePostObject(arr) {
     const obj = {};

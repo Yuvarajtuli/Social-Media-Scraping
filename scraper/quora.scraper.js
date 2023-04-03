@@ -73,7 +73,12 @@ async function scrapeInfiniteScrollItems(page, numberOfItems) {
 };
 
 async function scrapeFromQuora(keyword) {
-    const browser = await puppeteer.launch({ headless: true });
+       const browser = await puppeteer.launch({
+        headless: true, args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    });
     const page = await browser.newPage();
     const website = `https://www.quora.com/search?q=${keyword}&type=answer`
     await page.goto(website);

@@ -1,4 +1,7 @@
 const chrome = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
+
+const {executablePath} = require('puppeteer')
 
 function makePostObject(arr) {
     const obj = {};
@@ -72,15 +75,15 @@ async function scrapeInfiniteScrollItems(page, numberOfItems) {
 };
 
 async function scrapeFromQuora(keyword) {
-
-    const browser = await chromium.puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
-        headless: chromium.headless,
-        ignoreHTTPSErrors: true,
+    
+    const browser = await puppeteer.launch({
+        headless: true, args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--hide-scrollbars',
+            '--disable-web-security',
+        ], ignoreHTTPSErrors: true, executablePath: executablePath()
     });
-
     const page = await browser.newPage();
     const website = `https://www.quora.com/search?q=${keyword}&type=answer`
     await page.goto(website);

@@ -1,5 +1,4 @@
-const chromium = require('chrome-aws-lambda');
-
+const chrome = require('chrome-aws-lambda');
 
 function makePostObject(arr) {
     const obj = {};
